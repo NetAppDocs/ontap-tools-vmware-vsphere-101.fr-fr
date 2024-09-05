@@ -1,0 +1,53 @@
+---
+permalink: automation/delete-vvol-workflow.html 
+sidebar: sidebar 
+keywords: REST APIs, swagger 
+summary: 'Un workflow est une séquence d"une ou plusieurs étapes nécessaires à l"accomplissement d"une tâche ou d"un objectif administratif spécifique.' 
+---
+= Supprimer le datastore vVols
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Il existe un datastore vVvols tant qu'au moins un volume FlexVol est disponible sur le datastore. Si vous souhaitez supprimer un datastore vVols dans un cluster HA, vous devez d'abord démonter le datastore de tous les hôtes du cluster HA, puis supprimer manuellement le dossier _.vsphere-HA_ résidant à l'aide de l'interface utilisateur du serveur vCenter.
+
+*Étapes*
+
+Utilisez l'API suivante pour supprimer le datastore vVols.
+
+[listing]
+----
+DELETE
+​/virtualization​/api​/v1​/vcenters​/{vcguid}​/vvols​/datastores​/{moref}
+----
+Exemples
+
+* Supprimez le datastore vVols et les volumes du stockage
+
+
+[listing]
+----
+  DELETE /api/v1/vcenters/cdded9ad-6bsd-4c9e-b44g-691250bfe2df/vvols/datastores/datastore-28?delete_volumes=true
+----
+
+NOTE: Delete vVols datastore workflow supprime datastore-volumes si vous avez passé l'indicateur delete_volume comme TRUE, que le datastore-volume soit géré ou non.
+
+* Supprimez le datastore vVols et ne supprimez pas de volumes du stockage
+
+
+[listing]
+----
+  DELETE /api/v1/vcenters/cdded9ad-6bsd-4c9e-b44g-691250bfe2df/vvols/datastores/datastore-28?delete_volumes=false
+----
+Réponse :
+
+[listing]
+----
+{
+
+    "id": "1889"
+
+}
+----

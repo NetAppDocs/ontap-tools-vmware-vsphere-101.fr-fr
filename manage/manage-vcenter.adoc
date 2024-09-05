@@ -1,0 +1,58 @@
+---
+permalink: manage/manage-vcenter.html 
+sidebar: sidebar 
+keywords:  
+summary: Les vCenter sont des plateformes de gestion centralisée qui vous permettent de contrôler les hôtes, les machines virtuelles et les systèmes back-end de stockage. 
+---
+= Gestion de l'instance vCenter Server
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les serveurs vCenter sont des plateformes de gestion centralisée qui vous permettent de contrôler les hôtes, les machines virtuelles et les systèmes back-end de stockage.
+
+
+
+== Associer ou dissocier les systèmes back-end de stockage avec l'instance vCenter Server
+
+La page de liste vCenter Server affiche le nombre de systèmes back-end de stockage associés. Chaque instance de vCenter Server peut associer ou dissocier un système back-end de stockage. Cette tâche vous aide à créer un mappage global entre le système back-end de stockage et l'instance vCenter Server intégrée.
+
+*Étapes*
+
+. Lancez le Gestionnaire d'outils ONTAP à partir d'un navigateur Web : `\https://loadBalanceIP:8443/virtualization/ui/`
+. Connectez-vous à l'aide des outils ONTAP pour les informations d'identification d'administrateur VMware vSphere que vous avez fournies lors du déploiement.
+. Sélectionnez instances de vCenter Server dans la barre latérale.
+. Cliquez sur les ellipses verticales par rapport au serveur vCenter que vous souhaitez associer ou dissocier avec les systèmes back-end de stockage.
+. Sélectionnez *associer ou dissocier le backend de stockage* en fonction de l'action que vous souhaitez effectuer.
+
+
+
+
+== Modifier l'instance de vCenter Server
+
+Suivez les étapes ci-dessous pour modifier les instances de vCenter Server.
+
+. Lancez le Gestionnaire d'outils ONTAP à partir d'un navigateur Web : `\https://loadBalanceIP:8443/virtualization/ui/`
+. Connectez-vous à l'aide des outils ONTAP pour les informations d'identification d'administrateur VMware vSphere que vous avez fournies lors du déploiement.
+. Sélectionnez instances de vCenter Server dans la barre latérale
+. Cliquez sur les ellipses verticales sur le serveur vCenter que vous souhaitez modifier et sélectionnez *Modifier*.
+. Modifiez les détails de l'instance de vCenter Server et sélectionnez *Modifier*.
+
+
+
+
+== Supprimer l'instance de vCenter Server
+
+Vous devez supprimer tous les systèmes back-end associés au serveur vCenter avant de le supprimer.
+
+. Lancez le Gestionnaire d'outils ONTAP à partir d'un navigateur Web : `\https://loadBalanceIP:8443/virtualization/ui/`
+. Connectez-vous à l'aide des outils ONTAP pour les informations d'identification d'administrateur VMware vSphere que vous avez fournies lors du déploiement.
+. Sélectionnez instances de vCenter Server dans la barre latérale
+. Cliquez sur les points de suspension verticaux contre le serveur vCenter que vous souhaitez supprimer et sélectionnez *Supprimer*.
++
+
+NOTE: Une fois que vous avez supprimé les instances de vCenter Server, elles ne seront plus gérées par l'application.
+
+

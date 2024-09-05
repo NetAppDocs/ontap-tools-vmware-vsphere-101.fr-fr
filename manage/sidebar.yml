@@ -1,0 +1,69 @@
+---
+section: manage
+title: Gérer les outils ONTAP
+entries:
+- title: Gérer les datastores
+  entries:
+  - title: Montez des datastores NFS et VMFS
+    url: "/manage/mount-datastores-on-host.html"
+  - title: Montez un datastore vvols
+    url: "/manage/mount-a-vvols-datastore.html"
+  - title: Redimensionner les datastores NFS et VMFS
+    url: "/manage/resize-datastores.html"
+  - title: Étendez les datastores vVol
+    url: "/manage/expand-storage-of-vvol-datastore.html"
+  - title: Réduire les datastores vVols
+    url: "/manage/remove-storage-from-a-vvols-datastore.html"
+  - title: Supprimer les datastores
+    url: "/manage/delete-vvols.html"
+  - title: Vues de stockage ONTAP pour les datastores
+    url: "/manage/storage-view-datastore.html"
+  - title: Vue du stockage des machines virtuelles
+    url: "/manage/virtual-machine-storage-view-datastore.html"
+- title: Gérer les seuils de stockage
+  url: "/manage/manage-storage-threshold.html"
+- title: Gestion du back-end de stockage
+  url: "/manage/storage-backend.html"
+- title: Gestion de l'instance vCenter Server
+  url: "/manage/manage-vcenter.html"
+- title: Gérer les certificats
+  url: "/manage/certificate-manage.html"
+- title: Gestion des igroups et des règles d'export
+  url: "/manage/igroup-management.html"
+- title: Accès aux outils ONTAP pour la console de maintenance VMware vSphere
+  entries:
+  - title: Présentation des outils ONTAP pour la console de maintenance VMware vSphere
+    url: "/manage/maintenance-console.html"
+  - title: Configurer l'accès aux diagnostics à distance
+    url: "/manage/configure-remote-diagnostic-access.html"
+  - title: Démarrez SSH sur les autres nœuds
+    url: "/manage/start-the-ssh-on-other-nodes.html"
+  - title: Mettez à jour les informations d'identification vCenter et ONTAP
+    url: "/manage/update-vcenter-credentials.html"
+- title: Rapports sur l'outil ONTAP
+  url: "/manage/reports.html"
+- title: Collectez les fichiers journaux
+  url: "/manage/collect-the-log-files.html"
+- title: Gérer des machines virtuelles
+  entries:
+  - title: Considérations relatives à la migration ou au clonage de machines virtuelles
+    url: "/manage/migrate-virtual-machines.html"
+  - title: Migrez les machines virtuelles avec les datastores NFS et VMFS vers les
+      datastores vVols
+    url: "/manage/migrate-standard-virtual-machines-to-vvols-datastores.html"
+  - title: Nettoyage de Vasa
+    url: "/manage/delete-virtual-machines.html"
+- title: Modifier les paramètres de l'hôte VMware ESXi
+  url: "/manage/edit-esxi-host-settings.html"
+- title: Gérer les mots de passe
+  entries:
+  - title: Modifier le mot de passe du gestionnaire d'outils ONTAP
+    url: "/manage/change-manager-password.html"
+  - title: Réinitialisez le mot de passe du gestionnaire d'outils ONTAP
+    url: "/manage/reset-manager-password.html"
+  - title: Réinitialiser le mot de passe utilisateur de l'application
+    url: "/manage/reset-app-password.html"
+  - title: Réinitialiser le mot de passe utilisateur de la console de maintenance
+    url: "/manage/reset-maint-password.html"
+- title: Nettoyer les volumes
+  url: "/manage/delete-deployment.html"

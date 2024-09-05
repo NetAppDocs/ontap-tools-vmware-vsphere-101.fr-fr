@@ -1,0 +1,55 @@
+---
+permalink: deploy/recovery-deployment.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Si vous perdez vos outils ONTAP pour la configuration de VMware vSphere, tout en faisant fonctionner votre ONTAP, vous pouvez récupérer les outils ONTAP pour la configuration de VMware vSphere à l"aide de ONTAP. Lorsque vous perdez la configuration, arrêtez-la en douceur.' 
+---
+= Restaurez vos outils ONTAP pour la configuration de VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+En cas de perte de vos outils ONTAP pour la configuration de VMware vSphere, vous pouvez restaurer les outils ONTAP pour la configuration de VMware vSphere à l'aide des données disponibles dans les données de volume ONTAP. Lorsque vous perdez la configuration, arrêtez-la en douceur.
+
+
+NOTE: Vous ne pouvez pas restaurer vos outils ONTAP pour la configuration de VMware vSphere en cas de problème avec vCenter Server ou le logiciel de gestion des données ONTAP.
+
+*Étapes*
+
+. Connectez-vous au serveur vSphere.
+. Accédez au pool de ressources, au cluster de nœuds ou à l'hôte sur lequel vous souhaitez déployer l'OVA.
+. Cliquez avec le bouton droit de la souris sur l'emplacement requis et sélectionnez *déployer le modèle OVF*.
+. Vous pouvez entrer l'URL du fichier _.ova_ ou naviguer jusqu'au dossier dans lequel le fichier _.ova_ est enregistré, puis sélectionner *Suivant*.
++
+
+NOTE: Vous devez utiliser la même version OVA que celle que vous avez utilisée pour installer la configuration de récupération.
+
+. Sélectionnez un nom et un dossier pour la machine virtuelle et sélectionnez *Suivant*.
+. Sélectionnez l'hôte et sélectionnez *Suivant*.
+. Passez en revue le résumé du modèle et sélectionnez *Suivant*.
+. Lisez et acceptez le contrat de licence et sélectionnez *Suivant*.
+. Dans la fenêtre *Configuration*, sélectionnez l'option *récupération*.
+. Dans la fenêtre *Sélectionner le stockage*, sélectionnez le stockage pour les configurations et les fichiers disque.
+. Dans la fenêtre *Sélectionner réseaux*, sélectionnez un réseau de destination pour chaque réseau source.
++
+
+NOTE: Vous devez conserver l'adresse IP de l'équilibreur de charge et l'adresse IP du serveur API Kubernetes. Vous pouvez modifier l'adresse IP du nœud ou conserver la même adresse IP.
+
+. Sélectionnez la fenêtre *Personnaliser le modèle* > *Configuration système*. Entrez les informations suivantes :
++
+.. Nom d'utilisateur et mot de passe de l'application : ce nom d'utilisateur et ce mot de passe sont utilisés pour enregistrer à la fois le fournisseur VASA et SRA dans vCenter Server. Ceci peut être différent du nom d'utilisateur et du mot de passe fournis lors du déploiement initial.
+.. La case *Activer ASUP* est cochée par défaut.
+
+
+
+
+AutoSupport peut être activé ou désactivé uniquement pendant le déploiement. .. Dans le champ *URL proxy ASUP*, indiquez cette URL pour éviter le blocage du pare-feu pour la transmission de données AutoSupport. .. Nom d'utilisateur administrateur et mot de passe administrateur : il s'agit du mot de passe utilisé pour se connecter au Gestionnaire d'outils ONTAP. Ceci peut être différent du nom d'utilisateur et du mot de passe fournis lors du déploiement initial. .. Entrez les informations relatives à votre serveur NTP dans le champ *serveurs NTP*. .. Mot de passe utilisateur de maintenance : permet d'accorder l'accès aux options de la console de maintenance. . Dans la fenêtre *Personnaliser le modèle* > *Configuration du déploiement*, entrez les détails fournis pendant le déploiement. Toutes les valeurs de cette section doivent être identiques à celles fournies lors du déploiement initial, à l'exception de la valeur de la LIF de données.
+
+
+NOTE: Le nom du SVM de stockage ne doit pas être modifié, car il s'agit de l'emplacement de stockage des données de restauration. Cela s'applique également au compte utilisateur SVM directement ajouté. . Dans le cas de la restauration de déploiement haute disponibilité, fournissez les détails suivants : .. Détails de la bibliothèque de contenu. .. Détails de la configuration de vCenter. . Dans la fenêtre *Personnaliser le modèle* > *Configuration du nœud*, entrez les détails selon la configuration que vous essayez de restaurer, la configuration non HA ou HA. . Consultez les détails dans la fenêtre *prêt à terminer*, sélectionnez *Terminer*.
+
++ au fur et à mesure de la création de la tâche de déploiement, la progression s'affiche dans la barre des tâches vSphere. . Mettez le serveur virtuel sous tension une fois la tâche terminée.
+
++ l'installation commence. Vous pouvez suivre la progression de l'installation dans la console Web de la machine virtuelle. Dans le cadre de l'installation, les configurations de nœuds sont validées. Les entrées fournies sous différentes sections sous le modèle Personnaliser du formulaire OVF sont validées. En cas de divergence, une boîte de dialogue vous invite à prendre des mesures correctives. . Apportez les modifications nécessaires dans l'invite de la boîte de dialogue. Utilisez le bouton Tab pour naviguer dans le panneau et entrer vos valeurs, *OK* ou *Annuler*. . Lorsque vous sélectionnez *OK* ou *Annuler*, les valeurs fournies seront à nouveau validées. Les outils ONTAP pour VMware vous permettent de corriger les valeurs non valides à trois reprises. Si vous ne parvenez pas à corriger les problèmes après trois tentatives, l'installation du produit s'arrête et il vous est conseillé d'essayer l'installation sur une nouvelle machine virtuelle. . Une fois l'installation terminée, la console Web affiche l'état des outils ONTAP pour VMware vSphere. Une fois l'installation terminée, vous devez modifier manuellement la configuration matérielle requise conformément aux instructions de la link:../deploy/sizing-requirements.html["Conditions préalables au déploiement des outils ONTAP pour VMware vSphere"] page.

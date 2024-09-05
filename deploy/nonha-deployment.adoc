@@ -1,0 +1,99 @@
+---
+permalink: deploy/nonha-deployment.html 
+sidebar: sidebar 
+keywords:  
+summary: Vous pouvez configurer un seul nœud non HA dans des configurations de petite ou moyenne taille. 
+---
+= Déployez une configuration à un seul nœud non HA
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez déployer une configuration à un seul nœud non HA dans une configuration de petite ou moyenne taille.
+
+* La petite configuration non HA contient 8 processeurs et 16 Go de RAM.
+* La configuration moyenne non HA contient 12 processeurs et 24 Go de RAM.
+
+
+*Avant de commencer*
+
+Assurez-vous que la route réseau est présente. Le réseau de données de stockage doit être accessible depuis le réseau de gestion des machines virtuelles. Exemple : C1_sti67-vsim-ucs154k_1679633108::> network route create -vserver <SVM> -destination 0.0.0.0/0 -Gateway <gateway_ip>
+
+*Étapes*
+
+. Connectez-vous au serveur vSphere.
+. Accédez au pool de ressources, au cluster ou à l'hôte sur lequel vous souhaitez déployer l'OVA.
+. Cliquez avec le bouton droit de la souris sur l'emplacement requis et sélectionnez *déployer le modèle OVF...*.
++
+
+NOTE: Ne déployez pas la machine virtuelle VMware vSphere des outils ONTAP sur un datastore vVols qu'il gère.
+
+. Vous pouvez entrer l'URL du fichier _.ova_ ou naviguer jusqu'au dossier dans lequel le fichier _.ova_ est enregistré, puis sélectionner *Suivant*.
+. Sélectionnez un nom et un dossier pour la machine virtuelle et sélectionnez *Suivant*.
+. Sélectionnez l'hôte et sélectionnez *Suivant*
+. Passez en revue le résumé du modèle et sélectionnez *Suivant*.
+. Lisez et acceptez le contrat de licence et sélectionnez *Suivant*.
+. Dans la fenêtre *Configuration*, sélectionnez *Easy deployment(S)*, *Easy deployment(M)*, *Advanced deployment(S)* ou *Advanced deployment(M)*.
++
+Les options de déploiement avancé utilisent Trident en tant que provisionneur de stockage dynamique pour ONTAP pour créer des volumes. Le déploiement simplifié utilise le stockage local pour créer des volumes.
+
+. Sélectionnez le datastore où vous devez déployer l'OVA et sélectionnez *Suivant*.
+. Sélectionnez le réseau source et de destination et sélectionnez *Suivant*.
+. Sélectionnez la fenêtre *Personnaliser le modèle* > *Configuration système*.
++
+image:../media/ha-deployment-sys-config.png["configuration du système"] Entrez les détails suivants : .. Nom d'utilisateur et mot de passe de l'application : ce nom d'utilisateur et ce mot de passe sont utilisés pour enregistrer à la fois le fournisseur VASA et SRA dans vCenter Server. .. La case *Activer ASUP* est cochée par défaut.
+
+
+
+AutoSupport peut être activé ou désactivé uniquement pendant le déploiement. .. Dans le champ *URL proxy ASUP*, indiquez cette URL pour éviter le blocage du pare-feu pour la transmission de données AutoSupport. .. Nom d'utilisateur administrateur et mot de passe administrateur : il s'agit du mot de passe utilisé pour se connecter au Gestionnaire d'outils ONTAP. .. Entrez les informations relatives à votre serveur NTP dans le champ *serveurs NTP*. .. Mot de passe utilisateur de maintenance : permet d'accorder l'accès aux options de la console de maintenance. . Dans la fenêtre *Personnaliser le modèle* > *Configuration du déploiement*, entrez les détails suivants :
+
++ image:../media/ha-deploy-config.png["Configuration du déploiement"]
+
+. Entrez une adresse IP disponible dans l'adresse IP virtuelle du plan de contrôle Kubernetes. Cela est nécessaire pour le serveur d'API Kubernetes.
+. Sélectionner l'option *Activer l'étendue des SVM* lorsque vous avez l'intention d'utiliser le compte utilisateur SVM directement ajouté. Pour utiliser un cluster ONTAP, ne cochez pas la case.
++
+
+NOTE: Lorsque l'étendue de la SVM est activée, la prise en charge des SVM doit déjà être activée avec l'adresse IP de gestion.
+
+. Sélectionnez NFS ou iSCSI dans le champ *Protocol*.
+. Entrer l'adresse IP de gestion du cluster ONTAP ou du SVM dans le champ *LIF* de gestion ONTAP/SVM.
+. Entrer dans le cluster ONTAP ou la LIF de données SVM ONTAP/SVM La LIF de données doit appartenir au protocole sélectionné. Par exemple, si le protocole iSCSI est sélectionné, une LIF de données iSCSI doit être fournie.
+. Pour la VM de stockage, vous pouvez choisir de fournir les détails par défaut de votre VM de stockage ONTAP ou de créer une nouvelle VM de stockage. Ne pas entrer la valeur dans le champ *Storage VM* lorsque l'option Activer le périmètre SVM est sélectionnée car ce champ est ignoré.
+. Entrez le nom d'utilisateur ONTAP/SVM. Le nom d'utilisateur et le mot de passe ONTAP/SVM sont requis pour que Trident crée des volumes pour stocker les données des services en cas de déploiement avancé ou haute disponibilité, et pour récupérer les données des volumes en cas de défaillance d'un nœud.
+. Entrez le mot de passe ONTAP/SVM.
+. La VM principale est activée par défaut. Ne modifiez pas ce choix.
++
+.. Dans la fenêtre *Personnaliser le modèle* > *Configuration du nœud*, entrez les propriétés réseau de l'OVA.
++
+
+NOTE: Les informations fournies ici seront validées pour les modèles appropriés pendant le processus d'installation. En cas de divergence, un message d'erreur s'affiche sur la console Web et vous êtes invité à corriger toute information incorrecte fournie.
+
+
+
+. Entrez le nom d'hôte. Les noms d'hôte composés uniquement de lettres majuscules (A-Z), de lettres minuscules (a-z), de chiffres (0-9) et de caractères spéciaux de tiret (-) sont pris en charge. Si vous souhaitez configurer la double pile, spécifiez le nom d'hôte mappé sur l'adresse IPv6.
+. Entrez l'adresse IP (IPV4) mappée sur le nom d'hôte. Dans le cas d'une double pile, indiquez toute adresse IP IPv4 disponible qui se trouve dans le même VLAN que l'adresse IPv6.
+. Entrez l'adresse IPV6 sur le réseau déployé uniquement lorsque vous avez besoin de double manette.
+. Spécifiez la longueur du préfixe uniquement pour IPV6.
+. Spécifiez le sous-réseau à utiliser sur le réseau déployé dans le champ masque réseau (uniquement pour IPV4).
+. Spécifiez la passerelle sur le réseau déployé.
+. Spécifiez l'adresse IP du serveur DNS principal.
+. Spécifiez l'adresse IP du serveur DNS secondaire.
+. Spécifiez le nom de domaine de recherche à utiliser lors de la résolution du nom d'hôte.
+. Spécifiez la passerelle IPV6 sur le réseau déployé uniquement lorsque vous avez besoin de double pile.
++
+.. Consultez les détails dans la fenêtre *prêt à terminer*, sélectionnez *Terminer*.
++
+Au fur et à mesure de la création de la tâche de déploiement, la progression s'affiche dans la barre des tâches vSphere.
+
+.. Mettez le serveur virtuel sous tension une fois la tâche terminée.
++
+L'installation commence. Vous pouvez suivre la progression de l'installation dans la console Web de la machine virtuelle. Dans le cadre de l'installation, les configurations de nœuds sont validées. Les entrées fournies sous différentes sections sous le modèle Personnaliser du formulaire OVF sont validées. En cas de divergence, une boîte de dialogue vous invite à prendre des mesures correctives.
+
+.. Apportez les modifications nécessaires dans l'invite de la boîte de dialogue. Utilisez le bouton Tab pour naviguer dans le panneau et entrer vos valeurs, *OK* ou *Annuler*.
+.. Lorsque vous sélectionnez *OK*, les valeurs fournies seront à nouveau validées. Les outils ONTAP pour VMware vous permettent de corriger les valeurs non valides à trois reprises. Si vous ne parvenez pas à corriger les problèmes après trois tentatives, l'installation du produit s'arrête et il vous est conseillé d'essayer l'installation sur une nouvelle machine virtuelle.
+.. Une fois l'installation terminée, la console Web affiche l'état des outils ONTAP pour VMware vSphere.
+
+
+

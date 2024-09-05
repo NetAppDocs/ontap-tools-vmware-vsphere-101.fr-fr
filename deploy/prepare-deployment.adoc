@@ -1,0 +1,55 @@
+---
+permalink: deploy/prepare-deployment.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Pour pouvoir utiliser l"appliance, vous devez déployer les outils ONTAP pour VMware vSphere dans votre environnement et spécifier les paramètres requis.' 
+---
+= Préparez-vous à déployer les outils ONTAP pour VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de commencer à déployer les outils ONTAP pour VMware vSphere, vous devez connaître les exigences de base en matière de stockage back-end, les exigences des applications et les licences. Planifiez votre déploiement à l'avance et décidez de la façon dont vous souhaitez configurer les outils ONTAP pour VMware vSphere dans votre environnement.
+
+
+
+== Préparation du déploiement
+
+Voici les outils ONTAP pour la configuration VMware vSphere requise avant de procéder au déploiement :
+
+. Configurez et configurez votre environnement vCenter Server.
+. Téléchargez le fichier _.ova_.
+. (Facultatif) utilisé pour l'utilisateur d'automatisation : rassemblez le fichier JSON de collections Postman fourni par NetApp.
+. Informations d'identification du serveur vCenter parent pour déployer l'OVA. Le mot de passe du serveur vCenter parent ne doit pas contenir ces caractères spéciaux ($, ', ")
+. Assurez-vous que l'hôte ou le pool de ressources sur lequel l'OVA est déployé dispose des ressources minimales mentionnées dans la link:../deploy/sizing-requirements.html["Conditions préalables au déploiement des outils ONTAP pour VMware vSphere"] section.
+. Les informations de connexion de votre instance vCenter Server à laquelle les outils ONTAP pour VMware vSphere se connecteront pour l'enregistrement après le déploiement.
+. Supprimez le cache du navigateur.
+. Pour les déploiements non HA, vous avez besoin de trois adresses IP disponibles : une adresse IP libre pour l'équilibreur de charge et une adresse IP libre pour le plan de contrôle Kubernetes et une adresse IP pour le nœud. Pour un déploiement haute disponibilité, en plus de ces trois adresses IP, vous aurez besoin de deux adresses IP supplémentaires pour les deuxième et troisième nœuds. Les noms d'hôte doivent être mappés aux adresses IP libres sur le DNS avant l'attribution. Les cinq adresses IP doivent se trouver sur le même VLAN que celui sélectionné pour le déploiement.
+. Le modèle de bibliothèque de contenu une fois téléchargé ne doit pas être supprimé après le déploiement car il sera utilisé pendant les redémarrages.
+. Dans un déploiement multi-vCenter où les certificats d'autorité de certification personnalisée sont obligatoires, mappez le nom de domaine sur lequel le certificat est émis à l'adresse IP virtuelle. Effectuez une _nslookup_ check sur le nom de domaine pour vérifier si le domaine est résolu à l'adresse IP prévue. Les certificats doivent être créés avec le nom de domaine et l'adresse IP de l'adresse IP de l'équilibreur de charge.
+. VLAN pris en charge par IPv4/IPv6 - IPV6 pur n'est pas pris en charge. Le mode mixte est pris en charge avec les VLAN ayant des adresses IPv6 et IPv4.
+. Serveur NTP fourni au serveur vCenter pour la synchronisation de l'heure.
+. Adresse IP statique Détails de configuration pour le nœud ou la machine virtuelle où l'OVA est déployée (obligatoire) et d'autres détails.
++
+.. Nom d'hôte du serveur vCenter (vCenter dans lequel l'OVA est déployé)
+.. Nom d'utilisateur du serveur vCenter (vCenter où l'OVA est déployé)
+.. Mot de passe du serveur vCenter (vCenter dans lequel l'OVA est déployé)
+.. Pool de ressources
+.. LIF de données (IPv4/IPv6)
+.. LIF de management
+.. Nom d'utilisateur ONTAP
+.. Mot de passe ONTAP
+.. Nom du SVM
+.. Protocole
+.. Adresses IP virtuelles pour le plan de contrôle Kubernetes.
+.. Liste déroulante HA/NON HA
+.. Liste des noms d'hôtes
+.. Adresses IP (chaîne)
+.. Nom de la bibliothèque de contenu
+.. Nom du modèle OVF
+.. Passerelle IPv6 (en option)
+
+
+

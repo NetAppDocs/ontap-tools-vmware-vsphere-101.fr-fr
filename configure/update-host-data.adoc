@@ -1,0 +1,21 @@
+---
+permalink: configure/update-host-data.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Vous pouvez exécuter une détection à la demande sur l"hôte ESXi pour obtenir les dernières mises à jour des données de stockage.' 
+---
+= Mettre à jour les données de l'hôte
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez exécuter une détection à la demande sur l'hôte ESXi pour obtenir les dernières mises à jour des données de stockage.
+
+*Étapes*
+
+. Sur la page d'accueil du client Web VMware vSphere, cliquez sur *hosts and clusters*.
+. Cliquez avec le bouton droit de la souris sur un hôte, puis sélectionnez *NetApp ONTAP Tools* > *Update host data*.
+. Dans la fenêtre contextuelle *mettre à jour les données de l'hôte*, sélectionnez *Oui* pour redémarrer la détection de tous les systèmes de stockage connectés.
+

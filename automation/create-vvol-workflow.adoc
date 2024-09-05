@@ -1,0 +1,64 @@
+---
+permalink: automation/create-vvol-workflow.html 
+sidebar: sidebar 
+keywords: REST APIs, swagger 
+summary: 'Un workflow est une séquence d"une ou plusieurs étapes nécessaires à l"accomplissement d"une tâche ou d"un objectif administratif spécifique.' 
+---
+= Créer un datastore vVols
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez créer un datastore vVols avec de nouveaux volumes ou avec des volumes existants. Vous pouvez également créer un datastore vVols en combinant des volumes existants et de nouveaux volumes.
+
+
+NOTE: Cette option permet de vérifier que les agrégats racine ne sont pas mappés sur un SVM.
+
+Générez un jeton JWT avant de créer des datastores ou augmentez l'expiration du jeton SAML en définissant la valeur « durée de vie maximale du jeton porteur » sur 60 m sur vCenter.
+
+Vous devez transmettre x-auth pour l'API. Vous pouvez générer cette x-auth à partir de la nouvelle API ajoutée sous Auth dans swagger.
+
+/virtualization/api/v1/auth/vcenter-login
+
+. Créez un datastore vVols avec un nouveau volume.
+
+
+Get Aggregate ID, Storage_ID(SVM UUID) using ONTAP REST API. POST /Virtualization/api/v1/vcenters/cdded9ad-6bsd-4c9e-b44g-691250bfe2df/vvols/datastores
+
+Utilisez l'URI suivant pour vérifier l'état :
+
++
+
+[listing]
+----
+`\https://xx.xx.xx.xxx:8443/virtualization/api/jobmanager/v2/jobs/<JobID>?includeSubJobsAndTasks=true`
+----
++ corps de demande pour le datastore NFS
+
+{ "name":"nfsds1", "protocol":"nfs", "platform_type":"AFF", "moref":"domain-c8", "volumes":[ { "is_existing":false, "name":"back_nfs_pvt", "size_in_mb":2048000 200, "f690c", "storage-3827 5000"{'a850c", "9273":690f", "qos",":860c-860c"
+
+Corps de la demande pour le datastore iSCSI : { "nom" : "iscsi_custom", "protocole" : "iscsi", "type_plateforme" : "AFF", "moref" : "domaine-c8 8034", "volumes" : [ { "is_existing" : false, "nom_backend" : "iscsi_custom 1960 9506" Créez un datastore vVols avec des volumes existants.
+
+Obtenez Aggregate_ID et volume_ID à l'aide de l'API REST ONTAP.
+
+ POST /virtualization/api/v1/vcenters/cdded9ad-6bsd-4c9e-b44g-691250bfe2df/vvols/datastores
+Corps de la demande
+
+....
+ {
+"name" : "nfsds2",
+"protocol" : "nfs",
+"platform_type": "aff",
+"moref" : "domain-c8",
+"volumes" : [
+    {
+          "is_existing": true,
+          "id": "e632a632-1412-11ee-8a8c-00a09860a3ff"
+        }
+],
+"storage_backend": {
+                    "storage_id": "33a8b6b3-10cd-11ee-8a8c-00a09860a3ff"    }
+....
+}

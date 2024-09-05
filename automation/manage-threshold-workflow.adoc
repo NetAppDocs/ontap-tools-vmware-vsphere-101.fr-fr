@@ -1,0 +1,48 @@
+---
+permalink: automation/manage-threshold-workflow.html 
+sidebar: sidebar 
+keywords: REST APIs, swagger 
+summary: 'Un workflow est une séquence d"une ou plusieurs étapes nécessaires à l"accomplissement d"une tâche ou d"un objectif administratif spécifique.' 
+---
+= Seuil de gestion du stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez l'API de seuil GET suivante pour récupérer les limites de seuil de stockage configurées pour le volume et l'agrégat.
+
+[listing]
+----
+GET​/virtualization​/api​/v1​/vcenters​/{vcguid}​/storage-thresholds
+----
+Exemples : obtenir les seuils de stockage par instance de vCenter Server par identifiant vCenter
+
+[listing]
+----
+GET "/api/v1/vcenters/beded9ad-6bbb-4c9e-b4c6-691250bfe2da/storage-thresholds"
+----
+Utilisez l'alarme de configuration de CORRECTIF suivante pour le volume et l'agrégat pour générer une notification lorsque les limites de seuil configurées sont atteintes.
+
+[listing]
+----
+PATCH​/virtualization​/api​/v1​/vcenters​/{vcguid}​/storage-thresholds
+----
+Exemples : mettez à jour les seuils de stockage par vCenter en fonction du GUID vCenter. Les limites par défaut sont de 80 % pour presque plein et de 90 % pour pleine. Modification de tous les paramètres de seuil
+
+[listing]
+----
+{{{}PATCH "/api/v1/vcenters/beded9ad-6bbb-4c9e-b4c6-691250bfe2da/storage-thresholds"
+Request Body
+{
+"volume":
+
+{ "nearly_full_percent": 80, "full_percent": 90 }
+,
+"aggregate": {
+"nearly_full_percent": 80,
+"full_percent": 90
+}
+}{}}}{}
+----

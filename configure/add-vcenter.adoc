@@ -1,0 +1,69 @@
+---
+permalink: configure/add-vcenter.html 
+sidebar: sidebar 
+keywords:  
+summary: 'Les instances vCenter Server sont les plateformes de gestion centrale qui vous permettent de contrôler les hôtes, les machines virtuelles (VM) et les systèmes back-end de stockage.' 
+---
+= Ajoutez et gérez des instances vCenter Server
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+VCenter Server fournit la plateforme de gestion centralisée qui vous permet de contrôler les hôtes, les machines virtuelles (VM) et les systèmes back-end de stockage.
+
+
+
+== Ajoutez une instance de vCenter Server
+
+*À propos de cette tâche*
+
+Vous pouvez ajouter et gérer plusieurs instances de serveur vCenter à l'aide d'une seule instance des outils ONTAP pour VMware vSphere.
+
+*Étapes*
+
+. Lancez le Gestionnaire d'outils ONTAP à partir d'un navigateur Web : `\https://loadBalanceIP:8443/virtualization/ui/`
+. Connectez-vous à l'aide des outils ONTAP pour les informations d'identification d'administrateur VMware vSphere que vous avez fournies lors du déploiement.
+. Sélectionnez *vCenters* dans la barre latérale.
+. Sélectionnez *Ajouter* pour intégrer les instances de vCenter Server et fournissez votre adresse IP/nom d'hôte vCenter, votre nom d'utilisateur, votre mot de passe et vos détails de port.
+
+
+Lorsque vous ajoutez une instance de serveur vCenter aux outils ONTAP, les actions suivantes sont automatiquement exécutées :
+
+* Le plug-in client vCenter est enregistré
+* Les privilèges personnalisés des plug-ins et API sont transmis à l'instance vCenter Server
+* Des rôles personnalisés sont créés pour gérer les utilisateurs.
+
+
+
+
+== Enregistrez les outils ONTAP pour le plug-in VMware vSphere avec l'instance vCenter Server
+
+Lorsque vous ajoutez une instance vCenter Server, les outils ONTAP pour le plug-in VMware vSphere sont automatiquement enregistrés sur vCenter Server en tant que plug-in distant. Le plug-in est visible dans les raccourcis de l'interface utilisateur vSphere.
+
+Le plug-in est enregistré avec une clé _com.netapp.otv_ pour l'instance de vCenter Server et peut être consulté dans ExtensionManager de l'instance de vCenter Server.
+
+
+
+== Désenregistrez les outils ONTAP pour le plug-in VMware vSphere
+
+Vous pouvez annuler l'enregistrement des outils ONTAP pour le plug-in VMware vSphere à partir d'une instance de serveur vCenter en procédant comme suit.
+
+*Étapes*
+
+. Lancez le Gestionnaire d'outils ONTAP à partir d'un navigateur Web : `\https://loadBalanceIP:8443/virtualization/ui/`
+. Connectez-vous à l'aide des outils ONTAP pour les informations d'identification d'administrateur VMware vSphere que vous avez fournies lors du déploiement.
+. Sélectionnez vCenters dans la barre latérale.
+. Cliquez sur les ellipses verticales contre le vCenter que vous souhaitez supprimer et sélectionnez l'option *Supprimer*.
++
+
+NOTE: Vous ne pouvez pas supprimer une instance vCenter Server si un mappage de stockage lui est associé. Vous devez supprimer le mappage avant de supprimer l'instance de vCenter Server.
+
+
+
+Lorsque vous supprimez des instances de vCenter Server dans les outils ONTAP, les actions suivantes sont effectuées automatiquement :
+
+* Le plug-in n'est pas enregistré.
+* Les privilèges de plug-in et les rôles de plug-in sont supprimés.
+

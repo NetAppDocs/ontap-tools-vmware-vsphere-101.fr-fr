@@ -1,0 +1,19 @@
+---
+permalink: automation/overview-rest-apis.html 
+sidebar: sidebar 
+keywords: REST APIs, swagger 
+summary: 'Décrit l"utilisation des API REST pour exécuter plusieurs outils ONTAP pour les opérations de gestion VMware vSphere. Les API REST sont exposées via la page Web de swagger.' 
+---
+= Présentation des API REST
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Les API REST peuvent être utilisées pour exécuter plusieurs outils ONTAP pour les opérations de gestion VMware vSphere. Les API REST sont exposées via la page Web de swagger.
+
+Vous pouvez accéder à la page Web swagger disponible à l'adresse _\https://loadbalancerIP:8443/_ pour afficher la documentation de l'API REST, ainsi que pour émettre manuellement un appel d'API.
+
+
+NOTE: Toutes les API ont un corps de requête et des exemples mentionnés dans la page swagger. Les flux de travail et les exemples fournis dans cette section sont fournis à titre de référence uniquement.

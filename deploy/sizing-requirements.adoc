@@ -1,0 +1,91 @@
+---
+permalink: deploy/sizing-requirements.html 
+sidebar: sidebar 
+keywords: ONTAP tools,Storage Replication Adapter 
+summary: 'Avant de déployer les outils ONTAP pour VMware vSphere, vous devez connaître l"espace requis pour le package de déploiement ainsi que certaines exigences de base en matière de système hôte.' 
+---
+= Conditions préalables au déploiement des outils ONTAP pour VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Avant de déployer les outils ONTAP pour VMware vSphere, vous devez connaître l'espace requis pour le package de déploiement ainsi que certaines exigences de base en matière de système hôte.
+
+Vous pouvez utiliser les outils ONTAP pour VMware vSphere avec VMware vCenter Server Virtual Appliance (vCSA). Vous devez déployer les outils ONTAP pour VMware vSphere sur un client vSphere pris en charge qui inclut le système ESXi.
+
+* *Espace requis pour le package d'installation par nœud*
++
+** 10 Go pour les installations à provisionnement fin
+** 248 Go pour les installations à provisionnement lourd
+
+
+* *Exigences de dimensionnement du système hôte par nœud* la mémoire recommandée selon la taille du déploiement et par nœud est indiquée dans le tableau ci-dessous :
+
+
+|===
+
+
+| *Type de déploiement* | *CPU* | *Mémoire (Go)* 
+
+
+| Petit (S) | 8 | 16 
+
+
+| Moyen (M) | 12 | 24 
+
+
+| Grand (L) | 16 | 32 
+|===
+Voir link:../deploy/config-limits.html["Limites de configuration pour le déploiement des outils ONTAP pour VMware vSphere"]pour plus de détails.
+
+
+
+== Exigences minimales en matière de stockage et d'applications
+
+|===
+| Stockage, hôte et applications | Configuration minimale requise pour la version 
+
+
+| ONTAP | Dernière version de correctif de ONTAP 9.12.1, 9.13.1 ou 9.14.1 
+
+
+| Hôtes ESXi | ESXi 7.0.3 
+
+
+| Serveur vCenter | VCenter 7.0U3 
+
+
+| Fournisseur VASA | 3,0 
+
+
+| Application OVA | 10,1 
+|===
+La matrice d'interopérabilité (IMT) contient les dernières informations sur les versions prises en charge de ONTAP, de vCenter Server, d'hôtes ESXi et d'applications de plug-in.
+
+https://imt.netapp.com/matrix/imt.jsp?components=105475;&solution=1777&isHWU&src=IMT["Matrice d'interopérabilité"^]
+
+
+
+== Autres considérations relatives au déploiement
+
+Lors de la personnalisation du déploiement des outils ONTAP, vous devez tenir compte de quelques exigences.
+
+
+
+=== Mot de passe utilisateur de l'application
+
+Il s'agit du mot de passe attribué au compte administrateur. Pour des raisons de sécurité, il est recommandé que la longueur du mot de passe soit comprise entre huit et trente caractères et qu'elle contienne au moins un caractère supérieur, un chiffre inférieur, un chiffre et un caractère spécial.
+
+
+
+=== Identifiants de la console de maintenance de l'appliance
+
+Vous devez accéder à la console de maintenance en utilisant le nom d'utilisateur « maint ». Vous pouvez définir le mot de passe pour l'utilisateur "saint" pendant le déploiement. Vous pouvez utiliser l'option redémarrer le système d'exploitation invité disponible lors du redémarrage de la machine virtuelle dans vCenter Server pour modifier le mot de passe.
+
+
+
+=== Propriétés du réseau de l'appliance
+
+Spécifiez un nom d'hôte DNS valide (non qualifié) ainsi que l'adresse IP statique des outils ONTAP pour VMware vSphere et les autres paramètres réseau. Les adresses IP fournies doivent être accessibles à partir du réseau VLAN que vous sélectionnez pendant le déploiement. DHCP n'est pas pris en charge pour les outils ONTAP pour VMware vSphere version 10.1. Tous ces paramètres sont requis pour une installation et un fonctionnement corrects.

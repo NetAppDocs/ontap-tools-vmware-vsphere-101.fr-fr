@@ -1,0 +1,35 @@
+---
+permalink: deploy/download-ontap-tools.html 
+sidebar: sidebar 
+keywords:  
+summary: Vous pouvez télécharger le fichier .ova pour les outils ONTAP pour VMware vSphere à partir du site de support NetApp. 
+---
+= Téléchargez les outils ONTAP pour VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Vous pouvez télécharger le `.zip` fichier contenant des binaires (_.ova_) et des certificats signés pour les outils ONTAP pour VMware vSphere à partir du https://mysupport.netapp.com/site/products/all/details/otv/downloads-tab["Site de support NetApp"^].
+
+Une fois le déploiement terminé, les outils ONTAP pour les produits VMware vSphere et VASA sont installés dans votre environnement. Par défaut, les outils ONTAP pour VMware vSphere commencent à fonctionner dès que vous décidez du modèle de déploiement et que vous souhaitez activer VASA Provider en fonction de vos besoins. Voir link:../configure/registration-process.html["Enregistrez le fournisseur VASA avec une instance vCenter Server"] pour plus de détails.
+
+
+
+== Bibliothèque de contenu
+
+Une bibliothèque de contenu dans VMware est un objet conteneur qui stocke les modèles de machine virtuelle, les modèles vApp et d'autres types de fichiers. Le déploiement avec la bibliothèque de contenu vous offre une expérience transparente car il ne dépend pas de la connectivité réseau.
+
+
+NOTE: Vous devez stocker la bibliothèque de contenu sur un datastore partagé, de sorte que tous les hôtes d'un cluster puissent y accéder. Vous devez créer une bibliothèque de contenu pour stocker l'OVA avant de déployer l'OVA dans la configuration HA. Créez la bibliothèque de contenu en procédant comme suit :
+
+*Étapes*
+
+. Connectez-vous au client vSphere à l'aide de `\https://vcenterip/ui`
+. Sélectionnez les ellipses horizontales en regard de client vSphere et sélectionnez *Bibliothèque de contenu*.
+. Sélectionnez *Créer* à droite de la page.
+. Indiquez un nom pour la bibliothèque et créez la bibliothèque de contenu.
+. Accédez à la bibliothèque de contenu que vous avez créée.
+. Sélectionnez *actions* à droite de la page et sélectionnez *Importer élément* et importez le fichier OVA.
+

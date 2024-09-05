@@ -1,0 +1,34 @@
+---
+permalink: automation/onboard-svm-workflow.html 
+sidebar: sidebar 
+keywords: REST APIs, swagger 
+summary: 'Un workflow est une séquence d"une ou plusieurs étapes nécessaires à l"accomplissement d"une tâche ou d"un objectif administratif spécifique.' 
+---
+= Système back-end de stockage intégré (SVM ou Cluster) avec une instance vCenter Server
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Utilisez l'API suivante pour intégrer les systèmes back-end de stockage et mapper la SVM à vCenter localement. Voir link:../configure/configure-user-role-and-privileges.html["Configurer les rôles et privilèges des utilisateurs ONTAP"] la section relative au Privileges de l'utilisateur du SVM ONTAP.
+
+[listing]
+----
+POST /virtualization/api/v1/vcenters/<vcguid>/storage-backends
+
+{
+     "hostname_or_ip": "172.21.103.107",
+     "username": "svm11",
+     "password": "xxxxxx"
+   }
+----
+
+NOTE: L'ID de la réponse de l'API ci-dessus est utilisé dans la découverte.
+
+Vous devez transmettre x-auth pour l'API. Vous pouvez générer cette x-auth à partir de la nouvelle API ajoutée sous Auth dans swagger.
+
+[listing]
+----
+/virtualization/api/v1/auth/vcenter-login
+----

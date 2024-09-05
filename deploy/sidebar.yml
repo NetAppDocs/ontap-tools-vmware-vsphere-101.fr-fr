@@ -1,0 +1,20 @@
+---
+section: deploy
+title: Déployez les outils ONTAP pour VMware vSphere
+entries:
+- title: Prérequis
+  url: "/deploy/sizing-requirements.html"
+- title: Téléchargez les outils ONTAP
+  url: "/deploy/download-ontap-tools.html"
+- title: Limites de configuration
+  url: "/deploy/config-limits.html"
+- title: Préparez-vous à déployer les outils ONTAP
+  url: "/deploy/prepare-deployment.html"
+- title: Déployez une configuration à un seul nœud non HA
+  url: "/deploy/nonha-deployment.html"
+- title: Déployez une configuration haute disponibilité
+  url: "/deploy/ha-three-node-deployment.html"
+- title: Restaurez vos outils ONTAP pour la configuration de VMware vSphere
+  url: "/deploy/recovery-deployment.html"
+- title: Codes d'erreur de déploiement
+  url: "/deploy/deployment-error-codes.html"

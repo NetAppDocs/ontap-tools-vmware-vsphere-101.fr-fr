@@ -1,0 +1,42 @@
+---
+permalink: automation/storage-workflow.html 
+sidebar: sidebar 
+keywords: REST APIs, swagger 
+summary: 'Un workflow est une séquence d"une ou plusieurs étapes nécessaires à l"accomplissement d"une tâche ou d"un objectif administratif spécifique.' 
+---
+= Détection du stockage
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+L'intervalle de découverte peut être configuré dans le cadre de la carte de configuration. La découverte planifiée s'exécute toutes les 60 minutes. L'API fournie ici consiste à exécuter la découverte à la demande pour un système back-end de stockage donné, qui est ajouté au périmètre local.
+
+Utilisez l'API suivante pour exécuter la découverte :
+
+[listing]
+----
+POST
+/virtualization/api/v1/vcenters/{vcguid}/storage-backends/{id}/discovery-jobs
+----
+
+NOTE: Voir le workflow back-end de stockage intégré (SVM ou Cluster) et l'identifiant à partir de la réponse de l'API back-end de stockage.
+
+La découverte à partir de ce terminal d'API n'est prise en charge que pour les systèmes back-end de stockage périmètre local, et non pour les systèmes back-end de stockage périmètre global. Si le type de système back-end de stockage est cluster, la détection s'exécute implicitement pour les SVM enfants. Si le type de système back-end de stockage est SVM, la découverte s'exécute uniquement pour le SVM sélectionné.
+
+Exemple :
+
+Pour exécuter la découverte sur un système back-end de stockage spécifié par l'ID
+
+[listing]
+----
+POST
+/api/v1/vcenters/3fa85f64-5717-4562-b3fc-2c963f66afa6/storage-backends/74e85f64-5717-4562-b3fc-2c963f669dde/discovery-jobs
+----
+Vous devez transmettre x-auth pour l'API. Vous pouvez générer cette x-auth à partir de la nouvelle API ajoutée sous Auth dans swagger.
+
+[listing]
+----
+/virtualization/api/v1/auth/vcenter-login
+----

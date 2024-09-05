@@ -1,0 +1,32 @@
+---
+permalink: automation/svm-workflow.html 
+sidebar: sidebar 
+keywords: REST APIs, swagger 
+summary: 'Pour utiliser les identifiants d"utilisateur SVM pour provisionner les datastores, les outils ONTAP pour VMware vSphere créent des volumes sur l"agrégat spécifié dans l"API POST DES datastores.' 
+---
+= Exigences de mappage des agrégats du SVM
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Pour utiliser les identifiants d'utilisateur SVM pour provisionner les datastores, les outils ONTAP pour VMware vSphere créent des volumes sur l'agrégat spécifié dans l'API POST DES datastores. ONTAP ne permet pas la création de volumes sur des agrégats non mappés sur une SVM à l'aide des informations d'identification utilisateur de SVM. Pour résoudre ce problème, mappez les SVM avec les agrégats à l'aide de l'API REST ou de l'interface de ligne de commandes ONTAP comme décrit ici.
+
+API REST ONTAP :
+
+[listing]
+----
+PATCH "/api/svm/svms/f16f0935-5281-11e8-b94d-005056b46485"
+'{"aggregates":{"name":["aggr1","aggr2","aggr3"]}}'
+----
+Interface de ligne de commande ONTAP :
+
+[listing]
+----
+sti115_vsim_ucs630f_aggr1 vserver show-aggregates
+AvailableVserver Aggregate State Size Type SnapLock
+Type
+svm_test sti115_vsim_ucs630f_aggr1
+online 10.11GB vmdisk non-snaplock
+----
