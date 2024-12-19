@@ -52,4 +52,5 @@ Voici les outils ONTAP pour la configuration VMware vSphere requise avant de pro
 .. Passerelle IPv6 (en option)
 
 
+. Avant d'installer les outils ONTAP pour VMware vSphere 10.1 dans une configuration avancée non HA et une configuration haute disponibilité, consultez l'article de la base de connaissances : https://kb.netapp.com/on-prem/ontap/da/NAS/NAS-KBs/pre-requisites_for_installing_OTV_10.1_and_10.2_in_NonHA_Advanced_and_HA["Conditions requises pour la configuration avancée non HA et la configuration haute disponibilité"].
 

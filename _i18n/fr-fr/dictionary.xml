@@ -1823,4 +1823,6 @@
   <block id="8bc8491da19ddf762b07de3144d61829" category="cell">Datastores NFS et VMFS : NFS (v3 et v4.1), VMFS (iSCSI) vVols datastores : iSCSI, NFS v3</block>
   <block id="9f309a586570bbc1fff689704b3dad01" category="paragraph">Pour savoir si la migration à partir des outils ONTAP pour VMware vSphere 9 vers les outils ONTAP 10.1 est adaptée à votre déploiement, reportez-vous à la <block ref="947428ca1064f8d19137fb8976698998" category="inline-xref-macro-rx"></block>. La migration est prise en charge à partir des outils ONTAP pour VMware vSphere 9.10D2, 9.11D4, 9.12 et 9.13 vers les outils ONTAP 10.1.</block>
   <block id="ed8359854c43609fca7bc8a46cca9eac" category="sidebar">Comparaison des fonctionnalités des outils ONTAP 9 et ONTAP Tools 10</block>
+  <block id="f6e2644fce556a8207829c90c0760e9e" category="inline-link">Conditions requises pour la configuration avancée non HA et la configuration haute disponibilité</block>
+  <block id="1194197b73e30573b06eeec54d3ca76d" category="list-text">Avant d'installer les outils ONTAP pour VMware vSphere 10.1 dans une configuration avancée non HA et une configuration haute disponibilité, consultez l'article de la base de connaissances :<block ref="e4dee65de4069a83bb14c7c7d5ee3ead" category="inline-link-rx"></block>.</block>
 </blocks>
